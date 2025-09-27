@@ -87,9 +87,7 @@ export default function App() {
       h: 1,
     },
   ]
-  const BOARD_WIDTH = 4
-  const BOARD_HEIGHT = 5
-  const emptyCells = useRef([
+  const initialEmptyCells = [
     {
       x: 2,
       y: 5,
@@ -98,7 +96,9 @@ export default function App() {
       x: 3,
       y: 5,
     },
-  ])
+  ]
+  const BOARD_WIDTH = 4
+  const BOARD_HEIGHT = 5
   const directionNames = [
     "上",
     "下",
@@ -108,6 +108,7 @@ export default function App() {
   const [boardState, setBoardState] = useState(initialBoard)
   const [showModal, setShowModal] = useState(false)
   const [showGuide, setShowGuide] = useState(false)
+  const emptyCells = useRef(initialEmptyCells)
   const userChoice = useRef({
     pieceId: null,
     moveChoices: [],
