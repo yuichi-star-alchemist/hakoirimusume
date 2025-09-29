@@ -1,9 +1,15 @@
+import movePiece from "../functions/movePiece"
 
-export default function Cell({
+export default function Piece({
   children,
   coodinate,
-  onClick,
+  id,
   backgroundDesignation,
+  boardState,
+  userChoiceRef,
+  setShowModal,
+  setBoardState,
+  emptyCellsRef,
 }: {
   children: string
   coodinate: {
@@ -22,7 +28,15 @@ export default function Cell({
         gridColumnStart: coodinate.x[0],
         gridColumnEnd: coodinate.x[1],
       }}
-      onClick={onClick}
+      onClick={() => movePiece(
+        id,
+        null,
+        boardState,
+        userChoiceRef,
+        setShowModal,
+        setBoardState,
+        emptyCellsRef,
+      )}
     >
       <p
         className="text-6xl mx-auto"
