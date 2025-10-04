@@ -14,6 +14,7 @@ export default function useHooks() {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showGuide, setShowGuide] = useState<boolean>(false)
   const [boardState, setBoardState] = useState<BoardState>(initialBoard)
+  const [isCompleted, setIsCompleted] = useState<boolean>(false)
 
   return {
     emptyCellsRef,
@@ -24,5 +25,7 @@ export default function useHooks() {
     setShowGuide,
     boardState,
     setBoardState,
+    isCompleted,
+    setIsCompleted,
   }
 }

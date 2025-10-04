@@ -1,8 +1,11 @@
 "use client"
 
+import { useEffect } from "react"
+import CompletedModal from "./compornents/CompletedModal"
 import GuideModal from "./compornents/GuideModal"
 import MoveOptions from "./compornents/MoveOptions"
 import Piece from "./compornents/Piece"
+import checkIsCompleted from "./functions/checkIsCompleted"
 import useHooks from "./hooks"
 
 export default function App() {
@@ -15,6 +18,8 @@ export default function App() {
     setShowGuide,
     boardState,
     setBoardState,
+    isCompleted,
+    setIsCompleted,
   } = useHooks()
   const pieces = Array(boardState.length).fill(null).map((val, idx) => {
     const piece = boardState[idx]
@@ -32,16 +37,24 @@ export default function App() {
         setShowModal={ setShowModal }
         setBoardState={ setBoardState }
         emptyCellsRef={ emptyCellsRef }
+        isCompleted={ isCompleted }
       >
         { piece.name }
       </Piece>
     )
   })
 
+  useEffect(() => {
+    if (checkIsCompleted(boardState)) setIsCompleted(true)
+  })
+
   return (
     <main
       className="h-full w-[480px] mx-auto text-center select-none"
     >
+      {
+        isCompleted ? <CompletedModal /> : null
+      }
       {
         showGuide ? <GuideModal setShowGuide={setShowGuide}/> : null
       }

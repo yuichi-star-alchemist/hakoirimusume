@@ -12,6 +12,7 @@ export default function Piece({
   setShowModal,
   setBoardState,
   emptyCellsRef,
+  isCompleted,
 }: {
   children: string
   coodinate: {
@@ -25,9 +26,21 @@ export default function Piece({
   setShowModal: Dispatch<SetStateAction<boolean>>
   setBoardState: Dispatch<SetStateAction<BoardState>>
   emptyCellsRef: RefObject<EmptyCells>
+  isCompleted: boolean
 }) {
   const backgroundColor = backgroundDesignation != null ? backgroundDesignation : "bg-red-200"
   const hoverStyle = "hover:bg-red-400"
+  const onClick = isCompleted ?
+    () => {} :
+    () => movePiece(
+      id,
+      -1,
+      boardState,
+      userChoiceRef,
+      setShowModal,
+      setBoardState,
+      emptyCellsRef,
+    )
   return (
     <button
       className={`border rounded-xl flex items-center cursor-pointer ${backgroundColor} ${hoverStyle}`}
@@ -37,15 +50,7 @@ export default function Piece({
         gridColumnStart: coodinate.x[0],
         gridColumnEnd: coodinate.x[1],
       }}
-      onClick={() => movePiece(
-        id,
-        -1,
-        boardState,
-        userChoiceRef,
-        setShowModal,
-        setBoardState,
-        emptyCellsRef,
-      )}
+      onClick={onClick}
     >
       <p
         className="text-6xl mx-auto"
