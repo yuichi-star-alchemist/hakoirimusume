@@ -1,10 +1,12 @@
+import { Dispatch, RefObject, SetStateAction } from "react"
 import movePiece from "../functions/movePiece"
+import { BoardState, EmptyCells, UserChoice } from "../types"
 
 export default function Piece({
   children,
   coodinate,
   id,
-  backgroundDesignation,
+  backgroundDesignation = null,
   boardState,
   userChoiceRef,
   setShowModal,
@@ -16,6 +18,13 @@ export default function Piece({
     x: [number, number],
     y: [number, number],
   }
+  id: number
+  backgroundDesignation: string | null
+  boardState: BoardState
+  userChoiceRef: RefObject<UserChoice>
+  setShowModal: Dispatch<SetStateAction<boolean>>
+  setBoardState: Dispatch<SetStateAction<BoardState>>
+  emptyCellsRef: RefObject<EmptyCells>
 }) {
   const backgroundColor = backgroundDesignation != null ? backgroundDesignation : "bg-red-200"
   const hoverStyle = "hover:bg-red-400"
@@ -30,7 +39,7 @@ export default function Piece({
       }}
       onClick={() => movePiece(
         id,
-        null,
+        -1,
         boardState,
         userChoiceRef,
         setShowModal,

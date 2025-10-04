@@ -1,5 +1,7 @@
+import { Dispatch, RefObject, SetStateAction } from "react"
 import { directionNames } from "../constants"
 import movePiece from "../functions/movePiece"
+import { BoardState, EmptyCells, UserChoice } from "../types"
 
 export default function MoveOptions({
   boardState,
@@ -7,6 +9,12 @@ export default function MoveOptions({
   setShowModal,
   setBoardState,
   emptyCellsRef,  
+}: {
+  boardState: BoardState
+  userChoiceRef: RefObject<UserChoice>
+  setShowModal: Dispatch<SetStateAction<boolean>>
+  setBoardState: Dispatch<SetStateAction<BoardState>>
+  emptyCellsRef: RefObject<EmptyCells>
 }) {
   const pieceId = userChoiceRef.current.pieceId
   return (

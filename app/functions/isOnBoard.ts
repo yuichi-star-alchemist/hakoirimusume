@@ -1,8 +1,9 @@
 import { BOARD_HEIGHT, BOARD_WIDTH } from "../constants"
+import { Directions } from "../types"
 
 export default function isOnBoard(
-  toWantToMoveDirections: {x: number, y: number}[],
-) {
+  toWantToMoveDirections: Directions,
+): boolean {
   const minX = 1
   const minY = 1
   const maxX = BOARD_WIDTH
