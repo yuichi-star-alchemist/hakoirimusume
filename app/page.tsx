@@ -6,6 +6,7 @@ import GuideModal from "./compornents/GuideModal"
 import MoveOptions from "./compornents/MoveOptions"
 import Piece from "./compornents/Piece"
 import checkIsCompleted from "./functions/checkIsCompleted"
+import makeNewBoardState from "./functions/makeNewBoardState"
 import useHooks from "./hooks"
 
 export default function App() {
@@ -72,6 +73,22 @@ export default function App() {
                         setBoardState={setBoardState}
                         emptyCellsRef={emptyCellsRef}
                       /> : null }
+        {// 開発用
+          isCompleted ?
+            null :
+            <button
+              className="bg-orange-200 p-2 rounded-3xl"
+              onClick={() => setBoardState((prev) => {
+                const newBoardState = makeNewBoardState(prev)
+                const musume = newBoardState[1]
+                musume.x = 2
+                musume.y = 4
+                return newBoardState
+              })}
+            >
+              クリアする
+            </button>
+        }{/* 開発用 */}
       </div>
       <div
         className="h-4/5 bg-gray-300 pb-[26px] px-5 grid grid-cols-4 grid-rows-5"
