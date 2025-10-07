@@ -1,8 +1,9 @@
+import { Directions, EmptyCells } from "../types"
 
 export default function isNotCollision(
-  toWantToMoveDirections: {x: number, y: number}[],
-  emptyCellsRef,
-) {
+  toWantToMoveDirections: Directions,
+  emptyCellsRef: React.RefObject<EmptyCells>,
+): boolean {
   let matchCount = 0
   for (let i=0; i<toWantToMoveDirections.length; i++) {
     const dx = toWantToMoveDirections[i].x

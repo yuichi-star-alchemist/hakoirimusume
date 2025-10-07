@@ -1,16 +1,18 @@
+import { Dispatch, RefObject, SetStateAction } from "react"
+import { BoardState, EmptyCells, UserChoice } from "../types"
 import isNotCollision from "./isNotCollision"
 import isOnBoard from "./isOnBoard"
 import makeNewBoardState from "./makeNewBoardState"
 import updateEmptyCells from "./updateEmptyCells"
 
 export default function movePiece(
-  pieceId,
-  moveDirection,
-  boardState,
-  userChoiceRef,
-  setShowModal,
-  setBoardState,
-  emptyCellsRef,
+  pieceId: number,
+  moveDirection: number,
+  boardState: BoardState,
+  userChoiceRef: RefObject<UserChoice>,
+  setShowModal: Dispatch<SetStateAction<boolean>>,
+  setBoardState: Dispatch<SetStateAction<BoardState>>,
+  emptyCellsRef: RefObject<EmptyCells>,
 ) {
   const newBoardState = makeNewBoardState(boardState)
   const moveDirections = []
@@ -47,8 +49,8 @@ export default function movePiece(
     }
   }
 
-  if (moveDirection != null || moveDirections.length === 1) {
-    switch(moveDirection != null ? moveDirection : moveDirections[0]) {
+  if (moveDirection >= 0 || moveDirections.length === 1) {
+    switch(moveDirection >= 0 ? moveDirection : moveDirections[0]) {
       case 0:
         piece.y--
         break
@@ -63,7 +65,7 @@ export default function movePiece(
         break
     }
   }
-  if (moveDirection === null && moveDirections.length === 2) {
+  if (moveDirection < 0 && moveDirections.length === 2) {
     userChoiceRef.current.pieceId = pieceId
     userChoiceRef.current.moveChoices = moveDirections
     setShowModal(true)

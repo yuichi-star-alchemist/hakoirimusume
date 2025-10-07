@@ -1,5 +1,9 @@
+import { Dispatch, SetStateAction } from "react"
+
 export default function GuideModal({
   setShowGuide,
+}: {
+  setShowGuide: Dispatch<SetStateAction<boolean>>
 }) {
   return (
     <div

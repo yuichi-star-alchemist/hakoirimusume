@@ -1,8 +1,10 @@
+import { BoardState, Piece } from "../types"
+
 export default function mekeNewBoardState(
-  boardState,
-) {
-  const newBoardState = []
-  boardState.forEach((piece) => {
+  boardState: BoardState,
+): BoardState {
+  const newBoardState: BoardState = []
+  boardState.forEach((piece: Piece) => {
     newBoardState.push({...piece})
   })
   return newBoardState

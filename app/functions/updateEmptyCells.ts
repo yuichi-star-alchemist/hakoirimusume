@@ -1,9 +1,14 @@
+import { RefObject } from "react";
 import {
   BOARD_HEIGHT,
   BOARD_WIDTH,
 } from "../constants";
+import { BoardState, EmptyCells } from "../types";
 
-export default function updateEmptyCells(newBoardState,emptyCellsRef) {
+export default function updateEmptyCells(
+  newBoardState: BoardState,
+  emptyCellsRef: RefObject<EmptyCells>,
+) {
   const seriesArray = Array(BOARD_HEIGHT)
     .fill(null)
     .map(() => Array(BOARD_WIDTH).fill(false))

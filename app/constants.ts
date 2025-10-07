@@ -1,4 +1,6 @@
-const initialBoard = [
+import { BoardState, DirectionNames, EmptyCells } from "./types"
+
+const initialBoard: BoardState = [
   {
     id: 0,
     name: "父",
@@ -80,7 +82,7 @@ const initialBoard = [
     h: 1,
   },
 ]
-const initialEmptyCells = [
+const initialEmptyCells: EmptyCells = [
   {
     x: 2,
     y: 5,
@@ -90,14 +92,14 @@ const initialEmptyCells = [
     y: 5,
   },
 ]
-const directionNames = [
+const directionNames: DirectionNames = [
   "上",
   "下",
   "左",
   "右",
 ]
-const BOARD_WIDTH = 4
-const BOARD_HEIGHT = 5
+const BOARD_WIDTH: number = 4
+const BOARD_HEIGHT: number = 5
 
 export {
   BOARD_HEIGHT,

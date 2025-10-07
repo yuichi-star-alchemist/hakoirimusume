@@ -3,16 +3,18 @@ import {
   initialBoard,
   initialEmptyCells,
 } from "./constants";
+import { BoardState, EmptyCells, UserChoice } from "./types";
 
 export default function useHooks() {
-  const emptyCellsRef = useRef(initialEmptyCells)
-  const userChoiceRef = useRef({
-    pieceId: null,
+  const emptyCellsRef = useRef<EmptyCells>(initialEmptyCells)
+  const userChoiceRef = useRef<UserChoice>({
+    pieceId: 0,
     moveChoices: [],
   })
-  const [showModal, setShowModal] = useState(false)
-  const [showGuide, setShowGuide] = useState(false)
-  const [boardState, setBoardState] = useState(initialBoard)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [showGuide, setShowGuide] = useState<boolean>(false)
+  const [boardState, setBoardState] = useState<BoardState>(initialBoard)
+  const [isCompleted, setIsCompleted] = useState<boolean>(false)
 
   return {
     emptyCellsRef,
@@ -23,5 +25,7 @@ export default function useHooks() {
     setShowGuide,
     boardState,
     setBoardState,
+    isCompleted,
+    setIsCompleted,
   }
 }
